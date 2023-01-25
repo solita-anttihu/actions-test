@@ -10,7 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Building app
+      - name: Build app
         run: |
-          echo 'Building...'
-          echo 'Building Complete.'
+          echo 'Building app...'
+          echo 'Building app complete.'
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Publis to prod
+        run: |
+          echo 'Publishing to prod...'
+          echo 'Publish to prod complete..'
