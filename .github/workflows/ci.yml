@@ -15,7 +15,17 @@ jobs:
           echo 'Building app...'
           echo 'Building app complete.'
 
-  publish:
+  publish_test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Publis to test
+        run: |
+          echo 'Publishing to test...'
+          echo 'Publish to test complete..'
+
+  publish_prod:
     needs: [build]
     runs-on: ubuntu-latest
     environment: prod
