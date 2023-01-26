@@ -12,4 +12,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Testind Docker
+          echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
           docker images
