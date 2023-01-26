@@ -19,3 +19,5 @@ jobs:
       - name: Publish Docker image with Gradle
         # run: ./gradlew bootBuildImage --publishImage
         run: echo $IMAGE_NAME
+      - name: Test
+        run: echo "$GITHUB_REPOSITORY"
