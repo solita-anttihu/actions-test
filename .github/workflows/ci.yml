@@ -1,39 +1,16 @@
 name: CI
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ main, develop ]
   workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build app
-        run: |
-          echo 'Building app...'
-          touch test.txt
-          echo 'Building app complete.'
-
-  publish_test:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment: test
-    steps:
-      - name: Publis to test
-        run: |
-          echo 'Publishing to test...'
-          ls -lash
-          echo 'Publish to test complete..'
-
-  publish_prod:
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment: prod
-    steps:
-      - name: Publis to prod
-        run: |
-          echo 'Publishing to prod...'
-          ls -lash
-          echo 'Publish to prod complete..'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
