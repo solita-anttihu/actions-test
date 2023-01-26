@@ -12,3 +12,4 @@ jobs:
           echo Testing install
           echo $GITHUB_SHA
           echo $GITHUB_REF
+          echo $GITHUB_REF | awk -F/ '{print $NF}'
