@@ -36,7 +36,7 @@ tasks.withType<Test> {
 }
 
 tasks.named<BootBuildImage>("bootBuildImage") {
-	imageName.set("ghcr.io/${System.getenv("GITHUB_REPOSITORY")}:latest" )
+	imageName.set("ghcr.io/${System.getenv("GITHUB_REPOSITORY")}/demo-app:latest" )
 	publish.set(true)
 	docker {
 		publishRegistry {
