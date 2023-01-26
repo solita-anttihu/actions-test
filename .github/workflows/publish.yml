@@ -4,6 +4,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     env:
       IMAGE_NAME: "ghcr.io/${{ github.repository }}"
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
