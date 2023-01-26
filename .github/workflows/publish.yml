@@ -5,6 +5,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
+      IMAGE_NAME: ghcr.io/$GITHUB_REPOSITORY/demo-app:latest
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +17,5 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Publish Docker image with Gradle
-        run: ./gradlew bootBuildImage --publishImage
+        # run: ./gradlew bootBuildImage --publishImage
+        run: echo $IMAGE_NAME
