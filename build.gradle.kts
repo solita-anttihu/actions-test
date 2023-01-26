@@ -36,12 +36,12 @@ tasks.withType<Test> {
 }
 
 tasks.named<BootBuildImage>("bootBuildImage") {
-	imageName.set("ghcr.io/${System.getenv("GITHUB_REPOSITORY")}/demo-app:latest" )
+	imageName.set(System.getenv("IMAGE_NAME"))
 	publish.set(true)
 	docker {
 		publishRegistry {
-			username.set(System.getenv("GITHUB_ACTOR") )
-			password.set(System.getenv("GITHUB_TOKEN") )
+			username.set(System.getenv("GITHUB_ACTOR"))
+			password.set(System.getenv("GITHUB_TOKEN"))
 		}
 	}
 }
