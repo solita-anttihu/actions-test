@@ -1,0 +1,15 @@
+name: Prod install
+on:
+  push:
+    branches:
+      - main
+    tags:        
+      - v*.*
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo env
+          echo Testing install
