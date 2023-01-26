@@ -5,7 +5,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ghcr.io/$GITHUB_REPOSITORY/demo-app:latest
+      IMAGE_NAME: ghcr.io/${GITHUB_REPOSITORY}/demo-app:latest
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
