@@ -5,6 +5,8 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
+    env:
+      VERSION: $GITHUB_REF | awk -F/ '{print $NF}'
     steps:
       - name: Test
         run: |
@@ -13,3 +15,4 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REF
           echo $GITHUB_REF | awk -F/ '{print $NF}'
+          echo $VERSION
