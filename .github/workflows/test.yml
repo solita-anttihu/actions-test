@@ -14,3 +14,5 @@ jobs:
           echo Testind Docker
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
           docker images
+          docker pull ghcr.io/${{ github.repository_owner }}/demo-app:latest
+          docker images
