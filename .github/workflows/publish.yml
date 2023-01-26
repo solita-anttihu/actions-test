@@ -17,5 +17,4 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Publish Docker image with Gradle
-        # run: ./gradlew bootBuildImage --publishImage
-        run: echo $IMAGE_NAME
+        run: ./gradlew bootBuildImage --publishImage
