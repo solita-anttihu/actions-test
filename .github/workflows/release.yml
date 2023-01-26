@@ -2,10 +2,10 @@ name: Create Release
 on:
   workflow_dispatch:
 jobs:
-  create_release:
+  release:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Create Release
         uses: actions/create-release@v1
         env:
