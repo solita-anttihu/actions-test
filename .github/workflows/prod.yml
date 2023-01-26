@@ -1,10 +1,7 @@
 name: Prod install
 on:
-  push:
-    branches:
-      - main
-    tags:        
-      - v*.*
+  release:
+    types: [published]
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -13,3 +10,5 @@ jobs:
         run: |
           echo env
           echo Testing install
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
