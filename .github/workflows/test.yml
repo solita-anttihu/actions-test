@@ -12,4 +12,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Testind Docker
-          echo docker images
+          docker images
