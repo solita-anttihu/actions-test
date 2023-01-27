@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Verify release branch
         if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
+        run: exit 1
       - name: Create release branch
         run: |
           git branch
