@@ -20,5 +20,9 @@ jobs:
           git fetch --unshallow
           git checkout main
           git pull
-          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch main"
+          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to main"
+          git push
+          git checkout develop
+          git pull
+          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to develop"
           git push
