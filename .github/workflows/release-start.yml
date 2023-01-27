@@ -14,6 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Create release branch
+        if: github.ref == 'refs/heads/develop'
         run: |
           git branch release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
