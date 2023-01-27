@@ -14,7 +14,7 @@ jobs:
       - name: Release local image
         uses: ./.github/actions/release-image
         with:
-          source_image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.event.inputs.version }}
+          source_image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.event.inputs.image_tag }}
           target_repo_username: ${{ secrets.DOCKERHUB_USERNAME }}
           target_repo_password: ${{ secrets.DOCKERHUB_TOKEN }}
-          target_image: ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.event.inputs.version }}
+          target_image: ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.event.inputs.image_tag }}
