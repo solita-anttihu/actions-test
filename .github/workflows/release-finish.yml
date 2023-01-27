@@ -12,9 +12,7 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
         run: exit 1
       - name: Set release version number
-        run: |
-          echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
-          echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')"
+        run: echo "RELEASE_VERSION=$(echo ${{ github.ref_name }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
       - name: Set Git config
         run: |
           git config --local user.email "actions@github.com"
@@ -24,14 +22,14 @@ jobs:
           git fetch --unshallow
           git checkout develop
           git pull
-          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to develop"
+          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge release branch ${{ github.ref_name }} to develop"
           git push
           git checkout main
           git pull
-          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to main"
+          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge release branch ${{ github.ref_name }} to main"
           git push
       - name: Delete relese branch
-        run: git push origin --delete ${{ github.ref }}
+        run: git push origin --delete ${{ github.ref_name }}
       - name: Create release
         uses: actions/create-release@v1
         env:
