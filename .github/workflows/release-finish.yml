@@ -13,5 +13,6 @@ jobs:
         run: exit 1
       - name: Merge release branch to main and develop
         run: |
+          git checkout master
           git status
           git branch -l
