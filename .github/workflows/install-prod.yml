@@ -1,11 +1,10 @@
 name: Install Prod
 on:
   workflow_dispatch:
-    image_tag:
-      inputs:
-        version:
-          description: 'Image tag to install'
-          required: true
+    inputs:
+      image_tag:
+        description: 'Image tag to install'
+        required: true
 jobs:
   install:
     runs-on: ubuntu-latest
