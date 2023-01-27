@@ -22,11 +22,11 @@ jobs:
           git fetch --unshallow
           git checkout develop
           git pull
-          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge release branch ${{ github.ref_name }} to develop"
+          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge branch ${{ github.ref_name }} to develop"
           git push
           git checkout main
           git pull
-          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge release branch ${{ github.ref_name }} to main"
+          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge branch ${{ github.ref_name }} to main"
           git push
       - name: Delete relese branch
         run: git push origin --delete ${{ github.ref_name }}
