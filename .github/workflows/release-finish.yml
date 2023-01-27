@@ -15,4 +15,5 @@ jobs:
         run: |
           git fetch origin main
           git checkout main
-          git status
+          git merge --no-ff ${{ github.ref }}
+          git push
