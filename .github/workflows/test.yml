@@ -5,6 +5,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Test
+        run: ls -lash .github/actions/
       - name: Release local image
         uses: ./.github/actions/release-image
         with:
