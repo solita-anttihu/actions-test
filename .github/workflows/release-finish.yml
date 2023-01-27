@@ -27,4 +27,4 @@ jobs:
           git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to develop"
           git push
       - name: Delete relese branch
-        run: git push origin --delete feature/login
+        run: git push origin --delete ${{ github.ref }}
