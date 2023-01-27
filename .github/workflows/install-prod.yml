@@ -9,4 +9,4 @@ jobs:
       - name: Print
         run: |
           env
-          echo TEST
+          echo $TEST
