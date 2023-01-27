@@ -18,3 +18,4 @@ jobs:
           docker pull ghcr.io/${{ github.repository_owner }}/demo-app:latest
           docker tag ghcr.io/${{ github.repository_owner }}/demo-app:latest anttihuokkosolita/test:latest
           docker images
+          docker push anttihuokkosolita/test:latest
