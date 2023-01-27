@@ -1,4 +1,4 @@
-name: Prod install
+name: Production Install
 on:
   release:
     types: [published]
