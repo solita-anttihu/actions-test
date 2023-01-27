@@ -1,9 +1,15 @@
 name: CI
 on:
   push:
-    branches: [ main ]
+    branches:
+      - 'develop'
+      - 'release/**'
+      - 'hotfix/**'
   pull_request:
-    branches: [ main ]
+    branches:
+      - 'develop'
+      - 'release/**'
+      - 'hotfix/**'
   workflow_dispatch:
 jobs:
   build:
@@ -17,3 +23,9 @@ jobs:
           distribution: 'adopt'
       - name: Build and test
         uses: ./.github/actions/build-and-test
+      - name: Build Docker image
+        uses: ./.github/actions/build-image
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.run_number }}
+          registry_username: ${{ github.actor }}
+          registry_password: ${{ secrets.GITHUB_TOKEN }}
