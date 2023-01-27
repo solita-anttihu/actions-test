@@ -1,0 +1,12 @@
+name: Install Test
+on:
+  workflow_dispatch:
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Print
+        run: |
+          env
+          echo TEST
