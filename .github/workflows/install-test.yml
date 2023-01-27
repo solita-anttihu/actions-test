@@ -1,12 +1,20 @@
 name: Install Test
 on:
-  workflow_dispatch:
+  image_tag:
+    inputs:
+      version:
+        description: 'Image tag'
+        required: true
 jobs:
   install:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - name: Print
-        run: |
-          env
-          echo ${{ vars.TEST }}
+      - uses: actions/checkout@v3
+      - name: Release local image
+        uses: ./.github/actions/release-image
+        with:
+          source_image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.event.inputs.version }}
+          target_repo_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          target_repo_password: ${{ secrets.DOCKERHUB_TOKEN }}
+          target_image: ${{ secrets.DOCKERHUB_USERNAME }}/test:${{ github.event.inputs.version }}
