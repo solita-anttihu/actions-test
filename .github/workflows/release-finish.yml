@@ -14,7 +14,6 @@ jobs:
       - name: Merge release branch to main and develop
         run: |
           git fetch origin main
-          git checkout main
-          git pull
+          git switch main
           git merge --no-ff ${{ github.ref }}
           git push
