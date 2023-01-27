@@ -15,6 +15,5 @@ jobs:
         run: |
           echo Testing...
           echo ${{ github.event.inputs.version }}
-          git status
-          git branch "release/${{ github.event.inputs.version }}"
-          git status
+          git branch release/${{ github.event.inputs.version }}
+          git push origin release/${{ github.event.inputs.version }}
