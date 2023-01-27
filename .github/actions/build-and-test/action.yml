@@ -14,10 +14,3 @@ runs:
     - name: Build with Gradle
       run: ./gradlew build
       shell: bash
-    - name: Create test report
-      uses: dorny/test-reporter@v1
-      if: success() || failure()
-      with:
-        name: JUnit Tests
-        path: ./build/test-results/test/*.xml
-        reporter: java-junit
