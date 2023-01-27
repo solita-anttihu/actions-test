@@ -3,7 +3,7 @@ on:
   image_tag:
     inputs:
       version:
-        description: 'Image tag'
+        description: 'Image tag to install'
         required: true
 jobs:
   install:
