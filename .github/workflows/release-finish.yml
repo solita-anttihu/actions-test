@@ -13,7 +13,9 @@ jobs:
         run: exit 1
       - name: Merge release branch to main and develop
         run: |
+          git pull
           git status
+          git branch -l
           git checkout master
           git merge --no-ff ${{ github.ref }}
           git push
