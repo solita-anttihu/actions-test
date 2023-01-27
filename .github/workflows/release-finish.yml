@@ -15,18 +15,23 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "Github Actions"
-      - name: Merge release branch to main and develop
+      - name: Merge release branch to develop and main
         run: |
           git fetch --unshallow
-          git checkout main
-          git pull
-          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to main"
-          git push
           git checkout develop
           git pull
           git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to develop"
           git push
+          git checkout main
+          git pull
+          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch ${{ github.ref }} to main"
+          git push
       - name: Delete relese branch
         run: git push origin --delete ${{ github.ref }}
       - name: Create Release
-        run: git status
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: 1
+          release_name: Release 1
