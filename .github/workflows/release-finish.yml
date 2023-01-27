@@ -11,6 +11,10 @@ jobs:
       - name: Verify release branch
         if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
         run: exit 1
+      - name: Set version number
+        run: |
+          echo "VERSION_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+          echo Using version number $VERSION_NUMBER
       - name: Set Git config
         run: |
           git config --local user.email "actions@github.com"
