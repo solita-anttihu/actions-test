@@ -28,3 +28,5 @@ jobs:
           git push
       - name: Delete relese branch
         run: git push origin --delete ${{ github.ref }}
+      - name: Create Release
+        run: git status
