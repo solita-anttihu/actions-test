@@ -1,11 +1,6 @@
 name: Release Finish
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version'
-        required: true
-        default: '1.0'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -16,7 +11,5 @@ jobs:
       - name: Verify release branch
         if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
         run: exit 1
-      - name: Create release branch
-        run: |
-          git branch
-          git status
+      - name: Merge release branch to main
+        run: git status
