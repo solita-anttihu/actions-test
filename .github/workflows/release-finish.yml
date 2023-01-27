@@ -13,9 +13,8 @@ jobs:
         run: exit 1
       - name: Set version number
         run: |
-          echo "VERSION_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
-          echo "VERSION_NUMBER=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')"
-          echo Using version number ${{ vars.VERSION_NUMBER }}
+          echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')"
       - name: Set Git config
         run: |
           git config --local user.email "actions@github.com"
@@ -38,5 +37,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ vars.VERSION_NUMBER }}
-          release_name: Release v${{ vars.VERSION_NUMBER }}
+          tag_name: v${{ env.RELEASE_VERSION }}
+          release_name: Release v${{ env.RELEASE_VERSION }}
