@@ -16,6 +16,6 @@ jobs:
       - name: Build image
         uses: ./.github/actions/build-image
         with:
-          image: ghcr.io/${{ github.repository_owner }}/demo-app:latest
-          registry_username: $GITHUB_ACTOR
+          image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.run_number }}
+          registry_username: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
