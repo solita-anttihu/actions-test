@@ -13,5 +13,6 @@ jobs:
         run: exit 1
       - name: Merge release branch to main and develop
         run: |
-          git switch orign main
+          git fetch main
+          git switch main
           git status
