@@ -1,0 +1,27 @@
+name: 'Build Image'
+description: 'Build Docker image'
+inputs:
+  image:
+    description: 'Name of the image to build'
+    required: true
+  registry_username:
+    description: 'Username of the release registry'
+    required: true
+  registry_password:
+    description: 'Password of the release registry'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      shell: bash
+    - name: Set environment variables
+      run: |
+        echo "IMAGE_NAME=${{ inputs.image }}" >> $GITHUB_ENV
+        echo "REGISTRY_USERNAME=${{ inputs.registry_username }}" >> $GITHUB_ENV
+        echo "REGISTRY_PASSWORD=${{ inputs.registry_password }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Build Docker image using Gradle
+      run: ./gradlew bootBuildImage --publishImage
+      shell: bash

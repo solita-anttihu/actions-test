@@ -1,0 +1,11 @@
+name: 'Build and Test'
+description: 'Build and test all modules'
+runs:
+  using: composite
+  steps:
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      shell: bash
+    - name: Build with Gradle
+      run: ./gradlew build
+      shell: bash

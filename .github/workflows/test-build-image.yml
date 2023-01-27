@@ -1,16 +1,8 @@
-name: CI
+name: Test Build Image
 on:
-  push:
-    branches:
-      - 'release/**'
-      - 'hotfix/**'
-  pull_request:
-    branches:
-      - 'release/**'
-      - 'hotfix/**'
   workflow_dispatch:
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -21,9 +13,7 @@ jobs:
         with:
           java-version: 17
           distribution: 'adopt'
-      - name: Build and test
-        uses: ./.github/actions/build-and-test
-      - name: Build Docker image
+      - name: Build image
         uses: ./.github/actions/build-image
         with:
           image: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.run_number }}

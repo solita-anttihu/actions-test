@@ -1,0 +1,24 @@
+name: Release Finish
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Verify release branch
+        if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
+        run: exit 1
+      - name: Set Git config
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+      - name: Merge release branch to main and develop
+        run: |
+          git fetch --unshallow
+          git checkout main
+          git pull
+          git merge --no-ff ${{ github.ref }} -m "Auto-merge release branch main"
+          git push

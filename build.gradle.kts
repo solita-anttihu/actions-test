@@ -40,8 +40,8 @@ tasks.named<BootBuildImage>("bootBuildImage") {
 	publish.set(true)
 	docker {
 		publishRegistry {
-			username.set(System.getenv("GITHUB_ACTOR"))
-			password.set(System.getenv("GITHUB_TOKEN"))
+			username.set(System.getenv("REGISTRY_USERNAME"))
+			password.set(System.getenv("REGISTRY_PASSWORD"))
 		}
 	}
 }

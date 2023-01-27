@@ -1,0 +1,31 @@
+name: 'Release Image'
+description: 'Release Local Docker image'
+inputs:
+  source_image:
+    description: 'The source image to release'
+    required: true
+  target_repo_username:
+    description: 'The username for the target Docker repository'
+    required: true
+  target_repo_password:
+    description: 'The password for the target Docker repository'
+    required: true
+  target_image:
+    description: 'The target image to release'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Tag local source image
+      run:  |
+        docker pull ${{ inputs.source_image }}
+        docker tag ${{ inputs.source_image }} ${{ inputs.target_image }}
+      shell: bash
+    - name: Login to target repo
+      uses: docker/login-action@v2
+      with:
+        username: ${{ inputs.target_repo_username }}
+        password: ${{ inputs.target_repo_password }}
+    - name: Push image to target repo
+      run: docker push ${{ inputs.target_image }}
+      shell: bash
