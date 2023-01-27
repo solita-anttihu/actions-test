@@ -16,3 +16,5 @@ jobs:
           echo Testing...
           echo ${{ github.event.inputs.version }}
           git branch
+          git branch release/${{ github.event.inputs.version }}
+          git status
