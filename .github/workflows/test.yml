@@ -13,7 +13,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Pull local image
-        run: docker pull ghcr.io/${{ github.repository_owner }}/demo-app:latest
-      - name: List images
-        run: docker images
+      - name: Retag local image
+        run:  |
+          docker pull ghcr.io/${{ github.repository_owner }}/demo-app:latest
+          docker tag ghcr.io/${{ github.repository_owner }}/demo-app:latest anttihuokkosolita/test:latest
+          docker images
