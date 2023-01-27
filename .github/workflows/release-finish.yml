@@ -33,5 +33,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref | awk -F/ '{print $NF}' }}
+          tag_name: echo ${{ github.ref }} | awk -F/ '{print $NF}'
           release_name: Release 1
