@@ -11,7 +11,7 @@ jobs:
       - name: Verify release branch
         if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
         run: exit 1
-      - name: Set version number
+      - name: Set release version number
         run: |
           echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
           echo "RELEASE_VERSION=$(echo ${{ github.ref }} | awk -F/ '{print $NF}')"
@@ -32,7 +32,7 @@ jobs:
           git push
       - name: Delete relese branch
         run: git push origin --delete ${{ github.ref }}
-      - name: Create Release
+      - name: Create release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
