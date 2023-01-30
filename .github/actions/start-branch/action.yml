@@ -12,7 +12,9 @@ runs:
   steps:
     - name: Verify valid source branch
       if: github.ref_name != inputs.source_branch
-      run: exit 1
+      run: |
+        echo Invalid source branch $GITHUB_REF_NAME
+        exit 1
       shell: bash
     - name: Create new branch
       run: |
