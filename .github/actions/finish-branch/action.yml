@@ -4,7 +4,6 @@ inputs:
   source_branch_prefix:
     description: 'The required prefix for the source branch'
     required: true
-inputs:
   token:
     description: 'The token used to create release'
     required: true
