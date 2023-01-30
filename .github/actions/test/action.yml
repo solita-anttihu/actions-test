@@ -12,6 +12,6 @@ runs:
   steps:
     - name: Test action step1
       run:  |
-        echo ${{ inputs.param1 }}
-        echo ${{ inputs.param2 }}
+        echo Param1: ${{ inputs.param1 }}
+        echo Param2: ${{ inputs.param2 }}
       shell: bash
