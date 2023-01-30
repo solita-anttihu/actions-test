@@ -6,7 +6,7 @@ on:
       - 'release/**'
       - 'hotfix/**'
     paths-ignore:
-      - './.github/**'
+      - '.github/**'
   pull_request:
     branches:
       - 'develop'
