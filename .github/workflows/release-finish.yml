@@ -8,7 +8,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-      - name: Create release branch
+      - name: Finish release branch
         uses: ./.github/actions/finish-branch
         with:
           source_branch_prefix: release/
