@@ -9,5 +9,5 @@ jobs:
       - name: Test action use
         uses: ./.github/actions/test
         with:
-          param1: ${GITHUB_REF_NAME##*/}
+          param1: v${GITHUB_REF_NAME##*/}
           param2: ${GITHUB_REF_NAME::1}
