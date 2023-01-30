@@ -9,7 +9,9 @@ runs:
   steps:
     - name: Verify valid source branch
       if: ${{ !startsWith(github.ref_name, inputs.source_branch_prefix) }}
-      run: exit 1
+      run: |
+        echo Invalid source branch $GITHUB_REF_NAME
+        exit 1
       shell: bash
     - name: Set Git config
       run: |
