@@ -12,4 +12,4 @@ jobs:
         uses: ./.github/actions/test
         with:
           param1: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.run_number }}
-          param2: echo ${{ github.ref_name }}
+          param2: $(echo ${{ github.ref_name }})
