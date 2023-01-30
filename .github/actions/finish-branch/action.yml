@@ -38,6 +38,7 @@ runs:
       shell: bash
     - name: Set environment variables
       run: echo "GITHUB_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
+      shell: bash
     - name: Create release
       uses: actions/create-release@v1
       with:
