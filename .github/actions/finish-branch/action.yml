@@ -1,0 +1,40 @@
+name: Finish Branch
+description: 'Finishes a branch'
+inputs:
+  source_branch_prefix:
+    description: 'The required prefix for the source branch'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Verify valid source branch
+      if: ${{ !startsWith(github.ref_name, inputs.source_branch_prefix) }}
+      run: exit 1
+      shell: bash
+    - name: Set Git config
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "Github Actions"
+      shell: bash
+    - name: Merge release branch to develop and main
+      run: |
+        git fetch --unshallow
+        git checkout develop
+        git pull
+        git merge --no-ff $GITHUB_REF_NAME -m "Auto-merge release branch $GITHUB_REF_NAME to develop"
+        git push
+        git checkout main
+        git pull
+        git merge --no-ff $GITHUB_REF_NAME -m "Auto-merge release branch $GITHUB_REF_NAME to main"
+        git push
+      shell: bash
+    - name: Delete source branch
+      run: git push origin --delete $GITHUB_REF_NAME
+      shell: bash
+    - name: Create release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${$GITHUB_REF_NAME##*/}"
+        release_name: Release v${$GITHUB_REF_NAME##*/}"

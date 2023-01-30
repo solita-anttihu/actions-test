@@ -1,4 +1,4 @@
-name: 'Build Image'
+name: Build Image
 description: 'Build Docker image'
 inputs:
   image:

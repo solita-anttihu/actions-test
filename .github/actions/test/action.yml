@@ -1,4 +1,4 @@
-name: 'Test Action'
+name: Test Action
 description: 'Test action'
 inputs:
   param1:

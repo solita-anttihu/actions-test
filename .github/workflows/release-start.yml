@@ -14,15 +14,8 @@ jobs:
       actions: write
     steps:
       - uses: actions/checkout@v3
-      - name: Verify develop branch
-        if: github.ref != 'refs/heads/develop'
-        run: exit 1
       - name: Create release branch
-        run: |
-          git branch release/${{ github.event.inputs.version }}
-          git push origin release/${{ github.event.inputs.version }}
-      - name: Start CI workflow for release branch
-        uses: benc-uk/workflow-dispatch@v1
+        uses: ./.github/actions/start-branch
         with:
-          workflow: CI
-          ref: release/${{ github.event.inputs.version }}
+          source_branch: develop
+          target_branch: release/${{ github.event.inputs.version }}
