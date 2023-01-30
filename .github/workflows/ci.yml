@@ -33,6 +33,6 @@ jobs:
       - name: Build Docker image
         uses: ./.github/actions/build-image
         with:
-          image: ghcr.io/$GITHUB_REPOSITORY_OWNER/demo-app:${GITHUB_REF_NAME::1}-$GITHUB_RUN_NUMBER
+          image: ghcr.io/$GITHUB_REPOSITORY_OWNER/demo-app:$( echo ${GITHUB_REF_NAME::1} | tr [:lower:] [:upper:])-$GITHUB_RUN_NUMBER
           registry_username: $GITHUB_ACTOR
           registry_password: ${{ secrets.GITHUB_TOKEN }}
