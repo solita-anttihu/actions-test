@@ -39,8 +39,8 @@ runs:
     - name: Create release
       uses: actions/create-release@v1
       with:
-        tag_name: v${GITHUB_REF_NAME##*/}
-        release_name: Release v${GITHUB_REF_NAME##*/}
+        tag_name: "v${GITHUB_REF_NAME##*/}"
+        release_name: "Release v${GITHUB_REF_NAME##*/}"
     - name: Delete source branch
       run: git push origin --delete $GITHUB_REF_NAME
       shell: bash
