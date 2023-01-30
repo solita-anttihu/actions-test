@@ -16,4 +16,4 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: CI
-          ref: release/${{ github.event.inputs.version }}
+          ref: develop
