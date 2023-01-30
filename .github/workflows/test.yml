@@ -13,3 +13,8 @@ jobs:
         with:
           param1: ${GITHUB_REF_NAME##*/}
           param2: ${GITHUB_REF_NAME::1}
+      - name: Start CI workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: CI
+          ref: release/${{ github.event.inputs.version }}
