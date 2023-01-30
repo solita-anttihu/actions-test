@@ -1,3 +1,3 @@
-# actions-test
+# Actions Test
 
-Private repo for testing Github actions
+Private repo for testing Github actions.

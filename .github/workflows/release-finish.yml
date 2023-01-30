@@ -8,32 +8,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
-      - name: Verify release branch
-        if: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
-        run: exit 1
-      - name: Set release version number
-        run: echo "RELEASE_VERSION=$(echo ${{ github.ref_name }} | awk -F/ '{print $NF}')" >> $GITHUB_ENV
-      - name: Set Git config
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "Github Actions"
-      - name: Merge release branch to develop and main
-        run: |
-          git fetch --unshallow
-          git checkout develop
-          git pull
-          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge branch ${{ github.ref_name }} to develop"
-          git push
-          git checkout main
-          git pull
-          git merge --no-ff ${{ github.ref_name }} -m "Auto-merge branch ${{ github.ref_name }} to main"
-          git push
-      - name: Delete relese branch
-        run: git push origin --delete ${{ github.ref_name }}
-      - name: Create release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Finish release branch
+        uses: ./.github/actions/finish-branch
         with:
-          tag_name: v${{ env.RELEASE_VERSION }}
-          release_name: Release v${{ env.RELEASE_VERSION }}
+          source_branch_prefix: release/
+          token: ${{ secrets.GITHUB_TOKEN }}

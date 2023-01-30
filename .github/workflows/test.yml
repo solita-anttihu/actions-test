@@ -1,0 +1,20 @@
+name: Test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test action use
+        uses: ./.github/actions/test
+        with:
+          param1: ${GITHUB_REF_NAME##*/}
+          param2: ${GITHUB_REF_NAME::1}
+      - name: Start CI workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: CI
+          ref: develop

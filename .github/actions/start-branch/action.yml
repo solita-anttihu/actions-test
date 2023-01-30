@@ -1,0 +1,28 @@
+name: Start Branch
+description: 'Starts a new branch'
+inputs:
+  source_branch:
+    description: 'The name of the source branch'
+    required: true
+  target_branch:
+    description: 'The name of the target branch to create'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Verify valid source branch
+      if: github.ref_name != inputs.source_branch
+      run: |
+        echo Invalid source branch: $GITHUB_REF_NAME
+        exit 1
+      shell: bash
+    - name: Create new branch
+      run: |
+        git branch ${{ inputs.target_branch }}
+        git push origin ${{ inputs.target_branch }}
+      shell: bash
+    - name: Start CI workflow for the new branch
+      uses: benc-uk/workflow-dispatch@v1
+      with:
+        workflow: CI
+        ref: ${{ inputs.target_branch }}

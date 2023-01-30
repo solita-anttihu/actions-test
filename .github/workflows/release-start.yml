@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v3
-      - name: Verify develop branch
-        if: github.ref != 'refs/heads/develop'
-        run: exit 1
       - name: Create release branch
-        run: |
-          git branch release/${{ github.event.inputs.version }}
-          git push origin release/${{ github.event.inputs.version }}
+        uses: ./.github/actions/start-branch
+        with:
+          source_branch: develop
+          target_branch: release/${{ github.event.inputs.version }}
