@@ -21,7 +21,7 @@ jobs:
         run: |
           git branch release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
-      - name: Start CI workflow
+      - name: Start CI workflow for release branch
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: CI
