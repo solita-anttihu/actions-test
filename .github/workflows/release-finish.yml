@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Create release branch
-        uses: ./.github/actions/start-branch
+        uses: ./.github/actions/finish-branch
         with:
           source_branch_prefix: release/
