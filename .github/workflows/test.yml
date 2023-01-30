@@ -1,0 +1,15 @@
+name: Test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test action use
+        uses: ./.github/actions/test
+        with:
+          param1: ghcr.io/${{ github.repository_owner }}/demo-app:${{ github.run_number }}
+          param2: {{ github.run_number }}

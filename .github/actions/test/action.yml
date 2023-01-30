@@ -1,0 +1,17 @@
+name: 'Test Action'
+description: 'Test action'
+inputs:
+  param1:
+    description: 'The test param1'
+    required: true
+  param2:
+    description: 'The test param2'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Test action step1
+      run:  |
+        echo ${{ inputs.param1 }}
+        echo ${{ inputs.param2 }}
+      shell: bash
