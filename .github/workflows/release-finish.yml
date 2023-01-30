@@ -12,3 +12,4 @@ jobs:
         uses: ./.github/actions/finish-branch
         with:
           source_branch_prefix: release/
+          token: ${{ secrets.GITHUB_TOKEN }}
