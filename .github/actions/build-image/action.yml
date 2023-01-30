@@ -15,6 +15,6 @@ runs:
       shell: bash
     - name: Build and publish Docker image using Gradle
       run: |
-        ./gradlew bootBuildImage
+        ./gradlew bootBuildImage --imageName=$IMAGE_NAME
         docker push $IMAGE_NAME
       shell: bash
