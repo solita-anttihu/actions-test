@@ -33,14 +33,14 @@ runs:
         git merge --no-ff $GITHUB_REF_NAME -m "Auto-merge release branch $GITHUB_REF_NAME to main"
         git push
       shell: bash
-    - name: Delete source branch
-      run: git push origin --delete $GITHUB_REF_NAME
-      shell: bash
     - name: Set environment variables
       run: echo "GITHUB_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
       shell: bash
     - name: Create release
       uses: actions/create-release@v1
       with:
-        tag_name: v${$GITHUB_REF_NAME##*/}
-        release_name: Release v${$GITHUB_REF_NAME##*/}
+        tag_name: v${GITHUB_REF_NAME##*/}
+        release_name: Release v${GITHUB_REF_NAME##*/}
+    - name: Delete source branch
+      run: git push origin --delete $GITHUB_REF_NAME
+      shell: bash

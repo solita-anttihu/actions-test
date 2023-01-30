@@ -10,8 +10,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Test action step1
+    - name: Test action step 1
       run:  |
         echo Param1: ${{ inputs.param1 }}
         echo Param2: ${{ inputs.param2 }}
+      shell: bash
+    - name: Test action step 2
+      run:  echo v${GITHUB_REF_NAME##*/}
       shell: bash
