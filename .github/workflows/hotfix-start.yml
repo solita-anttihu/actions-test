@@ -1,0 +1,21 @@
+name: Hotfix Start
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Hotfix version'
+        required: true
+        default: '1.1'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create hotfix branch
+        uses: ./.github/actions/start-branch
+        with:
+          source_branch: main
+          target_branch: hotfix/${{ github.event.inputs.version }}
