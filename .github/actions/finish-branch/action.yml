@@ -34,13 +34,15 @@ runs:
         git push
       shell: bash
     - name: Set environment variables
-      run: echo "GITHUB_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
+      run: |
+        echo "GITHUB_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
+        echo "RELEASE_VERSION=v${GITHUB_REF_NAME##*/}" >> $GITHUB_ENV
       shell: bash
     - name: Create release
       uses: actions/create-release@v1
       with:
-        tag_name: "v${GITHUB_REF_NAME##*/}"
-        release_name: "Release v${GITHUB_REF_NAME##*/}"
+        tag_name: $RELEASE_VERSION
+        release_name: Release $RELEASE_VERSION
     - name: Delete source branch
       run: git push origin --delete $GITHUB_REF_NAME
       shell: bash
