@@ -4,6 +4,10 @@ inputs:
   source_branch_prefix:
     description: 'The required prefix for the source branch'
     required: true
+inputs:
+  token:
+    description: 'The token used to create release'
+    required: true
 runs:
   using: composite
   steps:
@@ -33,10 +37,10 @@ runs:
     - name: Delete source branch
       run: git push origin --delete $GITHUB_REF_NAME
       shell: bash
+    - name: Set environment variables
+      run: echo "GITHUB_TOKEN=${{ inputs.token }}" >> $GITHUB_ENV
     - name: Create release
       uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${$GITHUB_REF_NAME##*/}"
         release_name: Release v${$GITHUB_REF_NAME##*/}"
