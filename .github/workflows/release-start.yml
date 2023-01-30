@@ -21,4 +21,7 @@ jobs:
           git branch release/${{ github.event.inputs.version }}
           git push origin release/${{ github.event.inputs.version }}
       - name: Start CI workflow
-        uses: ./.github/workflows/ci.yml
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: CI
+          ref: release/${{ github.event.inputs.version }}
