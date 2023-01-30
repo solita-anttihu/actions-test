@@ -1,0 +1,15 @@
+name: Hotfix Finish
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Finish hotfix branch
+        uses: ./.github/actions/finish-branch
+        with:
+          source_branch_prefix: hotfix/
+          token: ${{ secrets.GITHUB_TOKEN }}
