@@ -2,12 +2,18 @@ name: CI
 on:
   push:
     branches:
+      - 'develop'
       - 'release/**'
       - 'hotfix/**'
+    paths-ignore:
+      - '.github/**'
   pull_request:
     branches:
+      - 'develop'
       - 'release/**'
       - 'hotfix/**'
+    paths-ignore:
+      - '.github/**'
   workflow_dispatch:
 jobs:
   build:
