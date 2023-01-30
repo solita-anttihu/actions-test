@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: read
+      actions: write
     steps:
       - uses: actions/checkout@v3
       - name: Verify develop branch
