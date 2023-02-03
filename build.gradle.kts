@@ -34,14 +34,3 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
-tasks.named<BootBuildImage>("bootBuildImage") {
-	imageName.set(System.getenv("IMAGE_NAME"))
-	publish.set(true)
-	docker {
-		publishRegistry {
-			username.set(System.getenv("REGISTRY_USERNAME"))
-			password.set(System.getenv("REGISTRY_PASSWORD"))
-		}
-	}
-}
