@@ -20,7 +20,7 @@ jobs:
           echo $base_image
       - name: Step 2
         run:  |
-          filename="./src/main/resources/application.yml"
+          filename="./src/main/resources/applicationX.yml"
           if [[ -f "$filename" ]]; then
             echo "File ${filename} exists."
           else
