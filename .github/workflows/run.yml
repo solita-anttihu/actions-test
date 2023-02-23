@@ -6,22 +6,23 @@ on:
         description: 'Test param'
         required: true
 jobs:
-  install:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Step 1
         run:  |
           if [[ "${{ inputs.param }}" == *":"* ]]; then
-            echo ${{ inputs.param }} | sed 's/:/-base&/'
+            base_image=$(echo ${{ inputs.param }} | sed 's/:/-base&/')
           else
-            echo "${{ inputs.param }}-base"
+            base_image="${{ inputs.param }}-base"
           fi
+          echo $base_image
       - name: Step 2
         run:  |
-          if [[ "${{ inputs.param }}" == *":"* ]]; then
-            test=$(echo ${{ inputs.param }} | sed 's/:/-base&/')
+          filename="README.md"
+          if [[ -f "$filename" ]]; then
+            echo "File ${filename} exists."
           else
-            test="${{ inputs.param }}-base"
+            echo "File ${filename} not exists."
           fi
-          echo $test
