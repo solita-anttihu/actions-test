@@ -17,3 +17,11 @@ jobs:
           else
             echo "${{ inputs.param }}-base"
           fi
+      - name: Step 2
+        run:  |
+          if [[ "${{ inputs.param }}" == *":"* ]]; then
+            test=$(echo ${{ inputs.param }} | sed 's/:/-base&/')
+          else
+            test="${{ inputs.param }}-base"
+          fi
+          echo $test
