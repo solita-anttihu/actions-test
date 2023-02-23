@@ -1,0 +1,19 @@
+name: Run
+on:
+  workflow_dispatch:
+    inputs:
+      param:
+        description: 'Test param'
+        required: true
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Step 1
+        run:  |
+          if [[ "${{ inputs.param }}" == *":"* ]]; then
+            echo ${{ inputs.param }} | sed 's/:/-base&/'
+          else
+            echo "${{ inputs.param }}-base"
+          fi
