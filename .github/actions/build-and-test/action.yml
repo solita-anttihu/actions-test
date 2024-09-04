@@ -16,7 +16,7 @@ runs:
         name: test-results
         path: |
           ./build/reports
-          ./build/test-results/**/*.xml
+          ./build/test-results/test/*.xml
     - name: Create test report dorny
       uses: dorny/test-reporter@v1
       if: success() || failure()
