@@ -27,3 +27,9 @@ runs:
       if: success() || failure()
       with:
         report_paths: ./build/test-results/test/*.xml
+    - name: Test Summary
+      uses: test-summary/action@v2
+      with:
+        paths: ./build/test-results/test/*.xml
+        output: test-summary.md
+      if: always()
