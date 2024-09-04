@@ -14,7 +14,7 @@ runs:
       if: success() || failure()
       with:
         name: test-results
-        path: ./build/test-results/test/*.xml
+        path: ./**/TEST-*.xml
     - name: Create test report dorny
       uses: dorny/test-reporter@v1
       if: success() || failure()
@@ -22,14 +22,3 @@ runs:
         name: JUnit Tests
         path: ./build/test-results/test/*.xml
         reporter: java-junit
-    - name: Create test report mikepenz
-      uses: mikepenz/action-junit-report@v4
-      if: success() || failure()
-      with:
-        report_paths: ./build/test-results/test/*.xml
-    - name: Test Summary
-      uses: test-summary/action@v2
-      with:
-        paths: ./build/test-results/test/*.xml
-        output: test-summary.md
-      if: always()
